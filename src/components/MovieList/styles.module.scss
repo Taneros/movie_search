@@ -1,61 +1,89 @@
-/* src/components/MovieList/styles.module.scss */
+/* src/components/styles.module.scss */
 
+/* Grid layout for the movie list */
 .movieGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
   gap: 20px;
-  justify-items: center;
-  margin: 20px;
+  padding: 20px;
 }
 
+/* Styling for each movie card */
 .movieItem {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
   text-align: center;
-  width: 200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
+.movieItem:hover {
+  transform: scale(1.05); /* Hover effect */
+}
+
+/* Make the poster clickable */
 .moviePoster {
   width: 100%;
-  height: auto;
   border-radius: 8px;
+  cursor: pointer; /* Show pointer cursor on hover */
+  transition: transform 0.3s ease;
 }
 
+.moviePoster:hover {
+  transform: scale(1.1); /* Slightly enlarge the poster on hover */
+}
+
+/* Movie title styling */
 .movieTitle {
-  font-size: 1.2em;
+  font-size: 1.2rem;
+  font-weight: bold;
   margin: 10px 0;
 }
 
+/* Description styling with reduced font size and text justification */
 .movieDescription {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
+  font-size: 0.9rem;
+  color: #555;
+  text-align: justify;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
   -webkit-box-orient: vertical;
+  display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 10px;
 }
 
-
+/* Pagination button styles */
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0;
+  margin-top: 20px;
 }
 
 .pageButton {
+  padding: 10px 15px;
   margin: 0 10px;
-  padding: 10px 20px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.pageButton:hover {
+  background-color: #0056b3;
 }
 
 .pageButton:disabled {
-  background-color: #ccc;
+  background-color: #dcdcdc;
   cursor: not-allowed;
 }
 
 .pageInfo {
+  font-size: 1rem;
   margin: 0 10px;
-  font-size: 1.1em;
 }

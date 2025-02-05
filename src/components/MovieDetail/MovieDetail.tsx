@@ -21,12 +21,32 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movieId }) => {
         alt={data?.nameRu}
         className={styles.moviePoster}
       />
-      <h2>{data?.nameRu}</h2>
-      <p>{data?.description}</p>
-      <p>Year: {data?.year}</p>
-      {/* Render additional movie details here */}
+
+      <h2 className={styles.movieName}>{data?.nameRu}</h2>
+
+      <div className={styles.movieDescription}>{data?.description}</div>
+
+      <div className={styles.movieDetails}>
+        <p>Year: {data?.year}</p>
+        <p>Genres: {data?.genres.map((genre) => genre.genre).join(', ')}</p>
+        <p>Countries: {data?.countries.map((country) => country.country).join(', ')}</p>
+        <p>Age Limit: {data?.ratingAgeLimits}</p>
+        <p>Kinopoisk Rating: {data?.ratingKinopoisk || 'N/A'}</p>
+        <p>IMDb Rating: {data?.ratingImdb || 'N/A'}</p>
+        {data?.imdbId && (
+          <a
+            href={`https://www.imdb.com/title/${data.imdbId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.imdbLink}
+          >
+            View on IMDb
+          </a>
+        )}
+      </div>
     </div>
   );
 };
 
 export default MovieDetail;
+
