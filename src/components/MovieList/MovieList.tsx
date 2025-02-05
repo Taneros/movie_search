@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useGetMoviesQuery } from '../../api/kinopoiskApi';
 import styles from './styles.module.scss';
-
 import { useNavigate } from 'react-router-dom';
 
 const MovieList: React.FC = () => {
@@ -9,8 +8,6 @@ const MovieList: React.FC = () => {
   const { data, error, isLoading } = useGetMoviesQuery(page);
 
   const navigate = useNavigate();
-
-
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -23,21 +20,30 @@ const MovieList: React.FC = () => {
     }
   }
 
-  if(!data) {
-    return <>No data</>
+  if (!data) {
+    return <>No data</>;
   }
+
+  // Add navigation handler
+  const handleNavigate = (id: number) => {
+    navigate(`/movies/${id}`);
+  };
 
   return (
     <div>
       <div className={styles.movieGrid}>
-        {data?.items.map((movie) => (
+        {data.items.map((movie) => (
           <div key={movie.kinopoiskId} className={styles.movieItem}>
+            {/* Navigation only happens by clicking on the poster itself */}
             <img
               src={movie.posterUrlPreview}
               alt={movie.nameRu}
               className={styles.moviePoster}
+              onClick={() => handleNavigate(movie.kinopoiskId)}
+              style={{ cursor: 'pointer' }}
             />
             <div className={styles.movieTitle}>{movie.nameRu}</div>
+            {/* Reduce description font and justify it */}
             <div className={styles.movieDescription}>{movie.description}</div>
             <div>{movie.year}</div>
           </div>

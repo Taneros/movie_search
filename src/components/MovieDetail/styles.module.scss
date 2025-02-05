@@ -1,0 +1,15 @@
+/* src/components/MovieDetail/styles.module.scss */
+
+.movieDetailContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+}
+
+.moviePoster {
+  max-width: 300px;
+  margin-bottom: 20px;
+}
