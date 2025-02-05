@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useGetMovieByIdQuery } from '../../api/kinopoiskApi';
+import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 interface MovieDetailProps {
@@ -10,12 +11,21 @@ interface MovieDetailProps {
 
 const MovieDetail: React.FC<MovieDetailProps> = ({ movieId }) => {
   const { data, error, isLoading } = useGetMovieByIdQuery(movieId);
+  const navigate = useNavigate();
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error?.data?.message}</div>;
 
+  const handleBackClick = () => {
+    navigate('/movies'); 
+  };
+
   return (
     <div className={styles.movieDetailContainer}>
+      <button onClick={handleBackClick} className={styles.backButton}>
+        Back to Movies List
+      </button>
+
       <img
         src={data?.posterUrl}
         alt={data?.nameRu}
@@ -49,4 +59,5 @@ const MovieDetail: React.FC<MovieDetailProps> = ({ movieId }) => {
 };
 
 export default MovieDetail;
+
 

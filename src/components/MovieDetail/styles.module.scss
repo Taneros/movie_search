@@ -27,7 +27,7 @@
   color: #555;
   margin-bottom: 20px;
   text-align: justify;
-  max-width: 700px;
+  max-width: 700px; 
   margin-left: auto;
   margin-right: auto;
 }
@@ -46,7 +46,6 @@
   margin-bottom: 10px;
 }
 
-/* IMDb Link Styling */
 .imdbLink {
   display: inline-block;
   margin-top: 10px;
@@ -61,4 +60,22 @@
 
 .imdbLink:hover {
   background-color: #ff6600;
+}
+
+/* Back Button Styling */
+.backButton {
+  font-size: 1.1rem;
+  background-color: #ff8c00;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+  margin-inline: auto;
+}
+
+.backButton:hover {
+  background-color: #e07c00;
 }
