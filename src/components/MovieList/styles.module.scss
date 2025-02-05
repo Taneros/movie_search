@@ -1,0 +1,61 @@
+/* src/components/MovieList/styles.module.scss */
+
+.movieGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-items: center;
+  margin: 20px;
+}
+
+.movieItem {
+  text-align: center;
+  width: 200px;
+}
+
+.moviePoster {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.movieTitle {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.movieDescription {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.pageButton {
+  margin: 0 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pageButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  margin: 0 10px;
+  font-size: 1.1em;
+}

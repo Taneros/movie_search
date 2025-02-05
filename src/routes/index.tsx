@@ -1,4 +1,3 @@
-// src/router.tsx
 import React from 'react';
 import { createBrowserRouter, redirect } from 'react-router-dom';
 import { store } from '../app/store';
@@ -20,23 +19,31 @@ export const router = createBrowserRouter([
   {
     path: 'movies',
     element: <HomePage />,
-    loader: () => {
-      loadStore().then(() => {
+    loader: async () => {
+      try {
+        await loadStore();
         store.dispatch(kinopoiskApi.util.prefetch('getMovies', 'initial_query', {}));
-      });
-      return null;
+        return {};
+      } catch (error) {
+        console.error('Loader Error (Movies):', error);
+        return { error };
+      }
     },
   },
   {
     path: 'movies/:id',
     element: <MoviePage />,
-    loader: ({ params }) => {
-      loadStore().then(() => {
+    loader: async ({ params }) => {
+      try {
+        await loadStore();
         store.dispatch(
-          kinopoiskApi.util.prefetch('getMovieById', params.id ?? '', {}),
+          kinopoiskApi.util.prefetch('getMovieById', params.id ?? '', {})
         );
-      });
-      return null;
+        return {};
+      } catch (error) {
+        console.error(`Loader Error (Movie ID ${params.id}):`, error);
+        return { error };
+      }
     },
   },
 ]);

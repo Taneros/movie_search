@@ -1,8 +1,8 @@
 // src/api/kinopoiskApi.ts
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const API_KEY = 'your_api_key';
-const BASE_URL = 'https://kinopoiskapiunofficial.tech/api';
+const API_KEY = import.meta.env.VITE_API_KEY;
+const BASE_URL = 'https://kinopoiskapiunofficial.tech/api/v2.2';
 
 export interface Country {
   country: string;
@@ -11,7 +11,7 @@ export interface Country {
 export interface Genre {
   genre: string;
 }
-
+ 
 export interface Movie {
   kinopoiskId: number;
   imdbId: string | null;
@@ -43,17 +43,18 @@ export const kinopoiskApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
     prepareHeaders: (headers) => {
+      console.log(`api/kinopoiskApi.ts - line: 46 ->> API_KEY`, API_KEY)
       headers.set('X-API-KEY', API_KEY);
       headers.set('Content-Type', 'application/json');
       return headers;
     },
   }),
   endpoints: (builder) => ({
-    getMovies: builder.query<MovieResponse, string>({
-      query: (query) => `/v2.1/films/search-by-keyword?keyword=${query}`,
+    getMovies: builder.query<MovieResponse, number>({
+      query: (page = 1) => `/films/collections?type=TOP_POPULAR_ALL&page=${page}`,
     }),
     getMovieById: builder.query<Movie, string>({
-      query: (id) => `/v2.1/films/${id}`,
+      query: (id) => `/films/${id}`,
     }),
   }),
   tagTypes: ['Movies'],
